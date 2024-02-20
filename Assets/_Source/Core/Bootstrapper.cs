@@ -1,18 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using PlayerSystem.Movement;
+using InputSystem;
+using PlayerSystem.Data;
+using PlayerSystem.Movement;
 using UnityEngine;
 
-public class Bootstrapper : MonoBehaviour
+namespace Core
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Bootstrapper : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        [SerializeField] private InputListener inputListener;
+        [SerializeField] private Player player;
+        private Movement _movement;
+        private void Awake()
+        {
+            _movement = new Movement();
+            
+            inputListener.Construct(_movement, player);
+            
+        }
     }
 }
